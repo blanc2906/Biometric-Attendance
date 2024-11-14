@@ -7,9 +7,10 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-container">
         
+        
         <div className="navbar-logo">
           <NavLink to="/" className="navbar-link" activeClassName="active">
-            Smart Acccess Control
+            Smart Access Control
           </NavLink>
         </div>
 
@@ -22,34 +23,34 @@ function Navbar() {
           </li>
           <li className="navbar-item">
             <NavLink to="/user-management" className="navbar-link" activeClassName="active">
-              Quản lý người dùng
+              User
             </NavLink>
           </li>
           <li className="navbar-item">
             <NavLink to="/attendance" className="navbar-link" activeClassName="active">
-              Lịch sử vào ra
+              Attendance
             </NavLink>
           </li>
           <li className="navbar-item">
             <NavLink to="/settings" className="navbar-link" activeClassName="active">
-              Cài đặt
+              Setting
             </NavLink>
           </li>
           <li className="navbar-item">
             <NavLink to="/notifications" className="navbar-link" activeClassName="active">
-              Thông báo
+              Notification
             </NavLink>
           </li>
         </ul>
 
-       
+        
         <div className="navbar-user">
           <span className="username">Admin</span>
           <div className="user-avatar">
             <img src="avatar.png" alt="User Avatar" />
           </div>
           <NavLink to="/logout" className="navbar-link logout" activeClassName="active">
-            Đăng xuất
+            Log out
           </NavLink>
         </div>
       </div>

@@ -6,7 +6,7 @@ import Attendance from "./pages/Attendance/Attendance";
 import Setting from "./pages/Settings/Setting";
 import Notification from "./pages/Notifications/Notification"
 import UserManagement from "./pages/UserManagement/UserManagement"
-
+import './styles/App.css'
 
 function App() {
   return (
