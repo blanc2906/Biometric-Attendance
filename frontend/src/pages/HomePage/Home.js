@@ -39,6 +39,8 @@ function Home() {
           <li>Cảnh báo: Nhận diện vân tay thất bại của người dùng Nguyễn Văn A</li>
           <li>Cảnh báo: Cố gắng truy cập trái phép từ địa chỉ IP 192.168.1.100</li>
           <li>Cảnh báo: Nhận diện khuôn mặt thất bại từ người dùng Trần Văn B</li>
+          <li>Null</li>
+          
         </ul>
       </div>
     </div>

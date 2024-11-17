@@ -1,0 +1,112 @@
+.user-management {
+    width: 95%;
+    padding: 20px;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .view-mode-toggle {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    gap: 10px;
+  }
+  
+  .view-mode-toggle button {
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .view-mode-toggle button:hover {
+    background-color: #45a049;
+  }
+  
+  .filter-section {
+    margin-left: auto; 
+    display: flex;
+    align-items: center; 
+  }
+  
+  .filter-section label {
+    margin-right: 10px; 
+    font-size: 16px;
+  }
+  
+  .filter-section select {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+ 
+  .user-list {
+    margin-top: 20px;
+  }
+  
+  
+  .user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .user-table th,
+  .user-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .user-table th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .user-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .user-table td {
+    font-size: 14px;
+    color: #555;
+  }
+  
+ 
+  .user-card {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-card .user-info {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .user-card h3 {
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+  }
+  
+  .user-card p {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+  
+  .user-card p:first-child {
+    font-weight: bold;
+  }
+  
