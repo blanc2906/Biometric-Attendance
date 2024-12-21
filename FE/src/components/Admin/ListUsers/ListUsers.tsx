@@ -9,6 +9,7 @@ import {
   Popconfirm,
   Modal,
   Upload,
+  Image,
 } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { ColumnsType } from "antd/es/table";
@@ -38,6 +39,7 @@ export default function ListUsers() {
   const [isModalAddFaceOpen, setIsModalAddFaceOpen] = useState<boolean>(false);
   const [uploadingUserId, setUploadingUserId] = useState<string | null>(null);
   const [fileList, setFileList] = useState<any[]>([]);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   const fetchUser = async () => {
     setIsLoading(true);
@@ -99,25 +101,29 @@ export default function ListUsers() {
     try {
       const res = await addFaceToUser(uploadingUserId, formData);
       if (res) {
-        message.success("Thêm khuôn mặt thành công");
+        message.success("Face added successfully");
         setIsModalAddFaceOpen(false);
         setFileList([]);
         fetchUser();
       }
     } catch (error: any) {
-      console.error("Lỗi thêm khuôn mặt:", error);
-      if (error.response) {
-        // Xử lý lỗi từ backend
-        message.error(
-          `${error.response.data.error || "Thêm khuôn mặt thất bại"}`
-        );
+      if (error.response?.data?.error?.includes("already registered")) {
+        message.error("This face is already registered for another user");
       } else {
-        // Xử lý lỗi kết nối
-        message.error("Có lỗi xảy ra, vui lòng thử lại.");
+        message.error("Failed to add face. Please try again.");
       }
     } finally {
       setIsLoading(false);
     }
+  };
+
+  // Add preview handler
+  const handlePreview = (file: File) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      setPreviewUrl(reader.result as string);
+    };
+    reader.readAsDataURL(file);
   };
 
   useEffect(() => {
@@ -222,6 +228,7 @@ export default function ListUsers() {
       ) : (
         <Row gutter={[20, 20]}>
           <Col span={24}>
+            <h2 style={{ marginBottom: 20 }}>Manage users</h2>
             <Table
               dataSource={listUser}
               columns={columns}
@@ -246,7 +253,7 @@ export default function ListUsers() {
         fetchUser={fetchUser}
       />
 
-      <Modal
+      {/* <Modal
         title="Add Face"
         open={isModalAddFaceOpen}
         onCancel={() => setIsModalAddFaceOpen(false)}
@@ -265,6 +272,48 @@ export default function ListUsers() {
         >
           <Button icon={<UploadOutlined />}>Upload Face Image</Button>
         </Upload>
+      </Modal> */}
+
+      <Modal
+        title="Add Face"
+        open={isModalAddFaceOpen}
+        onCancel={() => {
+          setIsModalAddFaceOpen(false);
+          setPreviewUrl(null);
+          setFileList([]);
+        }}
+        onOk={handleAddFace}
+        okText="Submit"
+        cancelText="Cancel"
+      >
+        <Space direction="vertical" style={{ width: "100%" }}>
+          {previewUrl && (
+            <Image
+              src={previewUrl}
+              alt="Preview"
+              style={{
+                width: "100%",
+                maxHeight: "300px",
+                objectFit: "contain",
+              }}
+            />
+          )}
+          <Upload
+            accept="image/*"
+            beforeUpload={(file) => {
+              setFileList([file]);
+              handlePreview(file);
+              return false;
+            }}
+            fileList={fileList}
+            onRemove={() => {
+              setFileList([]);
+              setPreviewUrl(null);
+            }}
+          >
+            <Button icon={<UploadOutlined />}>Upload Face Image</Button>
+          </Upload>
+        </Space>
       </Modal>
     </>
   );
