@@ -19,6 +19,7 @@ import {
   getUsers,
   addFaceToUser,
   User,
+  initialCreateUser,
 } from "../../../services/api";
 import { LiaFileExportSolid } from "react-icons/lia";
 import { IoCreateOutline } from "react-icons/io5";
@@ -104,6 +105,7 @@ export default function ListUsers() {
         message.success("Face added successfully");
         setIsModalAddFaceOpen(false);
         setFileList([]);
+        setPreviewUrl(null);
         fetchUser();
       }
     } catch (error: any) {
@@ -156,10 +158,17 @@ export default function ListUsers() {
       sortDirections: ["descend", "ascend"],
     },
     {
-      title: "Face Descriptor",
-      dataIndex: "faceDescriptor",
-      key: "faceDescriptor",
+      title: "Face",
+      dataIndex: "image_path",
+      key: "image_path",
       width: "30%",
+      render: (imagePath) => (
+        <Image
+          src={imagePath}
+          alt="Face"
+          style={{ width: 100, height: 100, objectFit: "cover" }}
+        />
+      ),
     },
     {
       title: "Action",
@@ -212,7 +221,11 @@ export default function ListUsers() {
         <Button
           icon={<IoCreateOutline />}
           type="primary"
-          onClick={() => setIsModalCreateOpen(true)}
+          onClick={async () => {
+            await initialCreateUser();
+
+            setIsModalCreateOpen(true);
+          }}
         >
           Create
         </Button>

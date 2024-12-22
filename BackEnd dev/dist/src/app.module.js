@@ -21,12 +21,14 @@ let AppModule = class AppModule {
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [mqtt_module_1.MqttModule,
+        imports: [
+            mqtt_module_1.MqttModule,
             database_module_1.DatabaseModule,
             users_module_1.UsersModule,
             config_1.ConfigModule.forRoot({ isGlobal: true }),
             excel_export_module_1.ExcelExportModule,
-            shared_module_1.SharedModule],
+            shared_module_1.SharedModule,
+        ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })

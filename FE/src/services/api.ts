@@ -7,6 +7,7 @@ export interface User {
   finger_id: number;
   userlog: string[];
   faceDescriptor: string;
+  image_path: string;
   __v: number;
 }
 
@@ -48,4 +49,8 @@ export const addFaceToUser = (
 
 export const getUserLogs = () => {
   return axios("/users/logs/all");
+};
+
+export const initialCreateUser = () => {
+  return axios.post("/users/init-create-user");
 };
